@@ -1,0 +1,9 @@
+from django.conf.urls import url
+from drc_web import views
+
+# patterns here are prefixed with 'web/'
+urlpatterns = [
+    url(r'^ping$', views.ping),
+    url(r'', views.matplotlib),
+    url(r'^pie$', views.piechart),
+]
