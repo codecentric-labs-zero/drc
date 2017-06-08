@@ -18,7 +18,7 @@ class Common(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     SECRET_KEY = values.SecretValue()
     DEBUG = values.BooleanValue(False)
-    ALLOWED_HOSTS = ['drc-demo.herokuapp.com']
+    ALLOWED_HOSTS = []
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
@@ -151,7 +151,7 @@ class Development(Common):
     }
 
 class Staging(Common):
-    ALLOWED_HOSTS = ['cclz-drc.herokuapp.com']
+    ALLOWED_HOSTS = ['drc-demo.herokuapp.com']
 
 class Production(Staging):
-    ALLOWED_HOSTS = ['cclz-drc-prod.herokuapp.com']
+    ALLOWED_HOSTS = ['drc-demo.herokuapp.com']
