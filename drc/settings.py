@@ -18,7 +18,7 @@ class Common(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     SECRET_KEY = values.SecretValue()
     DEBUG = values.BooleanValue(False)
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['drc-demo.herokuapp.com']
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
