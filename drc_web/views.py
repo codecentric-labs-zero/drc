@@ -1,3 +1,6 @@
+import matplotlib
+matplotlib.use('Agg')
+
 from django.http import HttpResponse
 import numpy as np
 import matplotlib.pyplot as plt
