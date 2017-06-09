@@ -1,2 +1,3 @@
 wkhtmltopdf
 libxcomposite-dev
+libxrender1
