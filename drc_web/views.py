@@ -1,4 +1,5 @@
 import matplotlib
+
 matplotlib.use('Agg')
 
 from django.http import HttpResponse
@@ -10,7 +11,7 @@ import datetime
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.dates import DateFormatter
-import matplotlib.patches as patches
+from matplotlib.patches import Polygon
 
 
 def ping(request):
@@ -54,12 +55,6 @@ def heat_map(request):
 
     ax.set_xticklabels(group2, minor=False)
     ax.set_yticklabels(group1, minor=False)
-
-    # Assumption: Use TkAgg as backend:
-    # plt.show()
-
-    # Assume: Use Agg as backend:
-    # plt.savefig("./img/my-heatmap.png")
     canvas = FigureCanvas(fig)
     response = django.http.HttpResponse(content_type='image/png')
     canvas.print_png(response)
@@ -67,18 +62,31 @@ def heat_map(request):
 
 
 def radar_plot(request):
-    response = ''
-    '''
-    fig, ax = plt.axes(polar=True)
-
-    theta = np.linspace(0, 2 * np.pi, 8, endpoint=False)
-    radius = .25 + .75 * np.random.random(size=len(theta))
-    points = np.vstack((theta, radius)).transpose()
-
-    plt.gca().add_patch(patches.Polygon(points, color='.75'))
+    fig = plt.figure(figsize=(10, 10))
+    theta = np.linspace(0, 2 * np.pi, 5, endpoint=False)
+    angles = theta / (2 * np.pi) * 360
+    ax = fig.add_subplot(111, polar=True)
+    ax.grid(False)
+    ax.set_frame_on(False)
+    ax.set_ylim(0, 100)
+    ax.set_rticks([])
+    ax.set_thetagrids(angles, labels=('A', 'B', 'C', 'D', 'E'))
+    ax.set_theta_zero_location('N')
+    gridlines = [20, 40, 60, 80]
+    for gridline in gridlines:
+        radius = np.zeros(len(theta)) + gridline
+        points = np.stack((theta, radius), axis=1)
+        ax.add_patch(Polygon(points, color='.75', fill=False))
+    radius = np.zeros(len(theta)) + 100
+    points = np.stack((theta, radius), axis=1)
+    ax.add_patch(Polygon(points, color='0', fill=False))
+    radius = np.array([55, 75, 62, 80, 15])
+    points = np.stack((theta, radius), axis=1)
+    ax.add_patch(Polygon(points, color='r', fill=False))
+    for t in theta:
+        ax.plot((t, t), (0, 100), color='.5', lw=1)
 
     canvas = FigureCanvas(fig)
     response = django.http.HttpResponse(content_type='image/png')
     canvas.print_png(response)
-    '''
     return response
