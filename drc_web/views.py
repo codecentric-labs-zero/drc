@@ -1,7 +1,6 @@
 import matplotlib
 
 matplotlib.use('Agg')
-
 from django.http import HttpResponse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,6 +11,10 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.dates import DateFormatter
 from matplotlib.patches import Polygon
+from django.shortcuts import render
+import os
+
+API_URL = os.getenv('API_URL')
 
 
 def ping(request):
@@ -89,4 +92,20 @@ def radar_plot(request):
     canvas = FigureCanvas(fig)
     response = django.http.HttpResponse(content_type='image/png')
     canvas.print_png(response)
+
+    return response
+
+
+def page_with_radar_plot(request):
+    return render(request, 'base.html')
+
+
+def generate_pdf(request):
+    import pdfkit
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="pdf.pdf"'
+
+    pdf = pdfkit.from_url(API_URL, False)
+
+    response.write(pdf)
     return response

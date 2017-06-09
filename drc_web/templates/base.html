@@ -1,9 +1,9 @@
-from django.conf.urls import url
-from drc_web import views
-
-# patterns here are prefixed with 'web/'
-urlpatterns = [
-    url(r'^ping$', views.ping),
-    url(r'', views.matplotlib),
-    url(r'^pie$', views.piechart),
-]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hello World</title>
+</head>
+<body>
+<img src="http://127.0.0.1:8000/web/radar_plot" alt="">
+</body>
+</html>
