@@ -14,3 +14,4 @@ libfontconfig1-dev
 zlib1g-dev
 libxext6
 libxrender1
+libglu1-mesa:i386
