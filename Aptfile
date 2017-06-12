@@ -13,6 +13,5 @@ libfontconfig1-dev
 zlib1g-dev
 libxext6
 libxrender1
-libglu1-mesa-dev
-libglu1-mesa
 libgl1-mesa-glx
+libgl1-mesa-dev
