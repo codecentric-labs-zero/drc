@@ -1,2 +1,12 @@
 libxcomposite-dev
-libxcursor1:i386
+libxcursor1
+openssl
+build-essential
+libssl-dev
+libxrender-dev
+git-core
+libx11-dev
+libxext-dev
+libfontconfig1-dev
+libfreetype6-dev
+fontconfig
