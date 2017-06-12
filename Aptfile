@@ -1,4 +1,4 @@
-libxcomposite-dev
+libxcomposite
 libxcursor1
 openssl
 build-essential
