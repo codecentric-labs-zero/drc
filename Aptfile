@@ -16,4 +16,5 @@ libxrender1
 libgl1-mesa-glx
 libgl1-mesa-dev
 build-essential
-libgl1-mesa-dev
+mesa-common-dev
+libglu1-mesa-dev
